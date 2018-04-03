@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card">
     <div class="card-body">
-      <form (ngSubmit)="onSubmit()" #f="ngForm">
+      <form (ngSubmit)="onSubmitUser(user); userForm.reset();" #userForm='ngForm'>
         <div class="form-group">
           <label for="name">Name</label>
           <input
@@ -9,10 +9,10 @@
             class="form-control"
             id="name"
             placeholder="Enter Name"
-            ngModel
             name="name"
             required
-            #name="ngModel">
+            #name="ngModel"
+            [(ngModel)]="user.name">
             <span class="error-message" *ngIf="!name.valid && name.touched">Please enter a valid name.</span>
         </div>
         <div class="form-group">
@@ -22,25 +22,25 @@
             class="form-control"
             id="email"
             placeholder="Enter email"
-            ngModel
             name="email"
             required
             email
-            #email="ngModel">
+            #email="ngModel"
+            [(ngModel)]="user.email">
             <span class="error-message" *ngIf="!email.valid && email.touched">Please enter a valid email address.</span>
         </div>
         <div class="form-group">
-          <label for="contact">Contact</label>
+          <label for="contact_number">Contact</label>
           <input
             type="text"
             class="form-control"
-            id="contact"
+            id="contact_number"
             placeholder="Enter Contact Number"
-            ngModel
-            name="contact"
+            name="contact_number"
             required
-            #contact="ngModel">
-            <span class="error-message" *ngIf="!contact.valid && contact.touched">Please enter a valid contact number.</span>
+            #contact_number="ngModel"
+            [(ngModel)]="user.contact_number">
+            <span class="error-message" *ngIf="!contact_number.valid && contact_number.touched">Please enter a valid contact number.</span>
         </div>
         <div class="form-group">
           <label for="address">Address</label>
@@ -49,10 +49,10 @@
             class="form-control"
             id="address"
             placeholder="Enter Address"
-            ngModel
             name="address"
             required
-            #address="ngModel">
+            #address="ngModel"
+            [(ngModel)]="user.address">
             <span class="error-message" *ngIf="!address.valid && address.touched">Please enter a valid address.</span>
         </div>
         <div class="form-group">
@@ -62,16 +62,16 @@
             class="form-control"
             id="gender"
             placeholder="Enter Gender"
-            ngModel
             name="gender"
             required
-            #gender="ngModel">
+            #gender="ngModel"
+            [(ngModel)]="user.gender">
             <span class="error-message" *ngIf="!gender.valid && gender.touched">Please provide your gender.</span>
         </div>
         <button
           type="submit"
           class="btn btn-primary"
-          [disabled]="!f.valid">Save User</button>
+          [disabled]="!userForm.valid">Save User</button>
       </form>
     </div>
   </div>

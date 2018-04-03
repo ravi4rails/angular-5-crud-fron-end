@@ -24,4 +24,9 @@ export class UsersService {
     return this.http.get(this.userUrl + '/' + id + '.json')
   }
 
+  createUser(user: User): Observable<User> {
+    return this.http.post(this.userUrl, JSON.stringify(user), this.options)
+      .map((res: Response) => res.json());
+  }
+
 }
