@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { Router, ActivatedRoute} from '@angular/router';
 import { User } from '../user';
 import { UsersService } from '../users.service';
@@ -15,15 +16,19 @@ export class UserListComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
   ngOnInit() {
-    this.usersService.usersChanged
-      .subscribe(
-        (users: User[]) => {
-          this.users = users;
-          console.log(users);
-          console.log(this.users);
-        }
-      )
-      this.users = this.usersService.getUsers();
+      let timer = Observable.timer(0, 5000);
+      timer.subscribe(() => this.getUsers());
       console.log(this.users)
   }
+
+  getUsers() {
+    this.usersService.getUsers()
+      .subscribe(users => this.users = users);
+  }
+
+  showUser(user: User): void {
+    let userLink = ['/users', user.id];
+    this.router.navigate(userLink);
+  }
+
 }

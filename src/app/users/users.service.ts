@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import { User } from './user';
 @Injectable()
 export class UsersService {
-  usersChanged = new Subject<User[]>();
-  constructor() { }
 
-  private users = [
-    new User(1, "Ravi Kumar Singh", "ravi@mailinator.com", "9859489589", "58-B Sheetal Nagar, Vijaynagar",  "Male"),
-    new User(2, "Rawal Jatan Singh", "rawal@mailinator.com", "9856789589", "Carnage Road, Vijaynagar", "Male"),
-    new User(3, "Arjun Singh", "arjun@mailinator.com", "9811489589", "Kila Road", "Male"),
-    new User(4, "Nikita Pandey", "nikita@mailinator.com", "9859449589", "Meera Road 76/2B, Vijaynagar",  "Female")
-  ]
+  headers: Headers;
+  options: RequestOptions;
+  private userUrl = 'http://localhost:3000/users'
 
-  getUsers() {
-    return this.users;
+  constructor(private http: Http) {
+    this.headers = new Headers({'Content-Type' : 'application/json'});
+    this.options = new RequestOptions({headers: this.headers});
   }
 
-  getUser(index: number) {
-    return this.users[index];
+  getUsers(): Observable<User[]> {
+    return this.http.get(this.userUrl)
+      .map((response: Response) => <User[]>response.json())
+  }
+
+  getUser(id: number) {
+    return this.http.get(this.userUrl + '/' + id + '.json')
   }
 
 }
