@@ -14,6 +14,8 @@ export class UserDetailsComponent implements OnInit {
   id: number;
   routeId: any;
   returnUrl: string;
+  editBtnClicked: boolean = false;
+  errorMessage: any;
   constructor(
     private http: Http,
     private route: ActivatedRoute,
@@ -36,5 +38,28 @@ export class UserDetailsComponent implements OnInit {
     userRequest.subscribe(
       response => this.user = response.json()
     );
+  }
+
+  update(user: User){
+    this.editBtnClicked = true;
+    this.usersService.updateUser(this.user)
+      .subscribe(data => {
+        return true
+      }, error => {
+        console.log('Error Editing Post');
+        return Observable.throw(error);
+      })
+  }
+
+  onUpdateClicked() {
+    this.router.navigate([this.returnUrl]);
+    this.editBtnClicked = false;
+  }
+
+  delete(user: User): void {
+    this.usersService.deleteUser(this.user.id)
+      .subscribe(data => {
+        this.router.navigate([this.returnUrl]);
+      }, error => this.errorMessage = error);
   }
 }

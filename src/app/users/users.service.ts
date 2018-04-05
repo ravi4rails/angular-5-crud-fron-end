@@ -29,4 +29,27 @@ export class UsersService {
       .map((res: Response) => res.json());
   }
 
+  deleteUser(id: number): Observable<User> {
+    const url  = `${this.userUrl}/${id}`;
+    return this.http.delete(url, this.options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  updateUser(user: User): Observable<User> {
+    const url  = `${this.userUrl}/${user.id}`;
+    return this.http.put(url, JSON.stringify(user),
+      this.options)
+        .map((res: Response) => res.json());
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occured', error);
+    return Promise.reject(error.message || error);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { User } from '../user';
 import { UsersService } from '../users.service';
@@ -10,9 +11,12 @@ import { UsersService } from '../users.service';
 })
 export class UserNewComponent implements OnInit {
   user = new User<{id: number, name: string, email: string, contact: string, address: string, gender: string}>();
-  constructor(private usersService: UsersService) { }
-  ngOnInit() {
-  }
+  submitted: boolean = false;
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) { }
+  ngOnInit() { }
   onSubmitUser(user: User) {
     this.submitted = true;
     this.usersService.createUser(user)
@@ -22,5 +26,10 @@ export class UserNewComponent implements OnInit {
           return Observable.throw(error);
         }
       )
+    this.onCreateUser();
+  }
+
+  onCreateUser() {
+    this.router.navigate(['/users']);
   }
 }
