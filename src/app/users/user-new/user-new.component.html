@@ -1,78 +1,80 @@
-<div class="container">
-  <div class="card">
-    <div class="card-body">
-      <form (ngSubmit)="onSubmitUser(user); userForm.reset();" #userForm='ngForm'>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            placeholder="Enter Name"
-            name="name"
-            required
-            #name="ngModel"
-            [(ngModel)]="user.name">
-            <span class="error-message" *ngIf="!name.valid && name.touched">Please enter a valid name.</span>
-        </div>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="Enter email"
-            name="email"
-            required
-            email
-            #email="ngModel"
-            [(ngModel)]="user.email">
-            <span class="error-message" *ngIf="!email.valid && email.touched">Please enter a valid email address.</span>
-        </div>
-        <div class="form-group">
-          <label for="contact_number">Contact</label>
-          <input
-            type="text"
-            class="form-control"
-            id="contact_number"
-            placeholder="Enter Contact Number"
-            name="contact_number"
-            required
-            #contact_number="ngModel"
-            [(ngModel)]="user.contact_number">
-            <span class="error-message" *ngIf="!contact_number.valid && contact_number.touched">Please enter a valid contact number.</span>
-        </div>
-        <div class="form-group">
-          <label for="address">Address</label>
-          <input
-            type="text"
-            class="form-control"
-            id="address"
-            placeholder="Enter Address"
-            name="address"
-            required
-            #address="ngModel"
-            [(ngModel)]="user.address">
-            <span class="error-message" *ngIf="!address.valid && address.touched">Please enter a valid address.</span>
-        </div>
-        <div class="form-group">
-          <label for="gender">Gender</label>
-          <input
-            type="text"
-            class="form-control"
-            id="gender"
-            placeholder="Enter Gender"
-            name="gender"
-            required
-            #gender="ngModel"
-            [(ngModel)]="user.gender">
-            <span class="error-message" *ngIf="!gender.valid && gender.touched">Please provide your gender.</span>
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="!userForm.valid">Save User</button>
-      </form>
+<div class="container u-form mb-4 mt-4">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmitUser(user); userForm.reset();" #userForm='ngForm'>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Enter Name"
+              name="name"
+              required
+              #name="ngModel"
+              [(ngModel)]="user.name">
+              <span class="error-message" *ngIf="!name.valid && name.touched">Please enter a valid name.</span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Enter email"
+              name="email"
+              required
+              email
+              #email="ngModel"
+              [(ngModel)]="user.email">
+              <span class="error-message" *ngIf="!email.valid && email.touched">Please enter a valid email address.</span>
+          </div>
+          <div class="form-group">
+            <label for="contact_number">Contact</label>
+            <input
+              type="text"
+              class="form-control"
+              id="contact_number"
+              placeholder="Enter Contact Number"
+              name="contact_number"
+              required
+              #contact_number="ngModel"
+              [(ngModel)]="user.contact_number">
+              <span class="error-message" *ngIf="!contact_number.valid && contact_number.touched">Please enter a valid contact number.</span>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              placeholder="Enter Address"
+              name="address"
+              required
+              #address="ngModel"
+              [(ngModel)]="user.address">
+              <span class="error-message" *ngIf="!address.valid && address.touched">Please enter a valid address.</span>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <input
+              type="text"
+              class="form-control"
+              id="gender"
+              placeholder="Enter Gender"
+              name="gender"
+              required
+              #gender="ngModel"
+              [(ngModel)]="user.gender">
+              <span class="error-message" *ngIf="!gender.valid && gender.touched">Please provide your gender.</span>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-app"
+            [disabled]="!userForm.valid">Save User</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

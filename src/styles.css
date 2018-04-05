@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-app {color:#fff;border-radius: 0px;}
+button {color:#fff !important;}
+.u-form .form-control {border-radius: 0px;}
+input.ng-invalid.ng-touched {border-color:red;}
+.error-message {color:red;}
